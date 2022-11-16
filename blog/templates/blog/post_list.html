@@ -1,28 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8"/>
-        <title>Django Girls Blog</title>
+{% extends 'blog/base.html' %}
 
-        <link rel="apple-touch-icon" sizes="180x180" href=".apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href=".favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href=".favicon-16x16.png">
-        <link rel="manifest" href=".site.webmanifest">
-        <link rel="mask-icon" href=".safari-pinned-tab.svg" color="#5bbad5">
-        <meta name="msapplication-TileColor" content="#da532c">
-        <meta name="theme-color" content="#ffffff">
-
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">Django Girls Blog</a></h1>
-        </div>
-            {% for post in posts %}
-        <div>
-            <p>published: {{ post.published_date }}</p>
-            <h1><a href="">{{ post.title }}</a></h1>
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
             <p>{{ post.text|linebreaksbr }}</p>
         </div>
-            {% endfor %}
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}
